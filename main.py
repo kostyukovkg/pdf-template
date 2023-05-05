@@ -21,6 +21,10 @@ for index, page in df.iterrows():
     pdf.add_page()
     pdf.set_text_color(0,0,254)
     pdf.cell(w=0, h=12, txt=page['Topic'], align='L', ln=1, border=0)
-    pdf.line(x1=10, y1=20, x2=200, y2=20) # in mm as we defined before. x- dist from left, y - dist from up
+    pdf.line(x1=10, y1=20, x2=200, y2=20) # in mm as we defined before. x - dist from left, y - dist from up
+    for i in range(page['Pages']-1):
+        pdf.add_page()
+        pdf.line(x1=10, y1=20, x2=200, y2=20)
+
 
 pdf.output("output.pdf")
