@@ -25,12 +25,16 @@ for index, page in df.iterrows():
     pdf.cell(w=0, h=12, txt=page['Topic'], align='L', ln=1, border=0)
     pdf.line(x1=10, y1=20, x2=200, y2=20) # in mm as we defined before. x - dist from left, y - dist from up
 
+    # set the footer
     pdf.ln(260) # adds break line
 
-    # set the footer
     pdf.set_font(family="Times", style="I", size=8)  # new font style is set
     pdf.set_text_color(180, 180, 180)
     pdf.cell(w=0, h=10, txt=page['Topic'], align='R')
+
+    # add lines
+    for n in range(20, 298, 10):
+        pdf.line(10, n, 200, n)
 
     for i in range(page['Pages']-1):
         pdf.add_page()
@@ -42,5 +46,8 @@ for index, page in df.iterrows():
         pdf.set_text_color(180, 180, 180)
         pdf.cell(w=0, h=10, txt=page['Topic'], align='R')
 
+        # add lines
+        for n in range(20, 298, 10):
+            pdf.line(10, n, 200, n)
 
 pdf.output("output.pdf")
